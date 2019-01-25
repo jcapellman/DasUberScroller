@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace DasSidescroller.UWP
 {
@@ -44,7 +45,7 @@ namespace DasSidescroller.UWP
 
             _playerSheet = Content.Load<Texture2D>("hero_spritesheet");
             column = 0;
-            row = 0;
+            row = 1;
         }
 
         /// <summary>
@@ -63,8 +64,37 @@ namespace DasSidescroller.UWP
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // TODO: Add your update logic here
+            KeyboardState state = Keyboard.GetState();
 
+            // If they hit esc, exit
+            if (state.IsKeyDown(Keys.Escape))
+                Exit();
+
+            // Move our sprite based on arrow keys being pressed:
+            if (state.IsKeyDown(Keys.Right))
+            {
+                if (column == 5)
+                {
+                    column = 0;
+                }
+                else
+                {
+                    column++;
+                }
+            }
+
+            if (state.IsKeyDown(Keys.Left))
+            {
+                if (column == 5)
+                {
+                    column = 0;
+                }
+                else
+                {
+                    column++;
+                }
+            }
+            
             base.Update(gameTime);
         }
 
@@ -78,7 +108,8 @@ namespace DasSidescroller.UWP
 
             spriteBatch.Begin();
 
-            spriteBatch.Draw(_playerSheet, position: Vector2.Zero, sourceRectangle: new Rectangle(column, row, 80, 100), color: Color.White);
+            spriteBatch.Draw(_playerSheet, position: new Vector2(0, Window.ClientBounds.Height - 400), 
+                sourceRectangle: new Rectangle(column * 80, row * 100, 80, 100), color: Color.White, scale: new Vector2(4.0f, 4.0f));
 
             spriteBatch.End();
 
