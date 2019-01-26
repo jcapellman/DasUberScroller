@@ -1,5 +1,5 @@
 ﻿using DasUberScroller.UWP.Containers;
-
+using DasUberScroller.UWP.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -8,7 +8,6 @@ namespace DasUberScroller.UWP.Objects
 {
     public class Player : BaseObject
     {
-        private Texture2D _playerSheet;
         private int column;
         private int row;
         private int _xPosition;
@@ -21,10 +20,12 @@ namespace DasUberScroller.UWP.Objects
         private const int SpriteHeight = 100;
         private const int SpriteWidth = 80;
 
-        public Player(Texture2D texture, WindowContainer windowContainer) : base(windowContainer)
-        {
-            _playerSheet = texture;
+        private const string spriteSheetName = "hero_spritesheet";
 
+        public Player(GameContentManager contentManager, WindowContainer windowContainer) : base(windowContainer)
+        {
+            contentManager.LoadTexture(spriteSheetName);
+            
             column = 0;
             row = 1;
 
@@ -32,9 +33,9 @@ namespace DasUberScroller.UWP.Objects
         }
 
         [System.Obsolete]
-        public override void Render(SpriteBatch spriteBatch)
+        public override void Render(SpriteBatch spriteBatch, GameContentManager contentManager)
         {
-            spriteBatch.Draw(_playerSheet, position: new Vector2(_xPosition, WindowContainer.ResolutionY - ((Scale * WindowContainer.ScaleResolutionY) * SpriteHeight)),
+            spriteBatch.Draw(contentManager.GetTexture(spriteSheetName), position: new Vector2(_xPosition, WindowContainer.ResolutionY - ((Scale * WindowContainer.ScaleResolutionY) * SpriteHeight)),
                 sourceRectangle: new Rectangle(column * SpriteWidth, row * SpriteHeight, SpriteWidth, SpriteHeight), color: Color.White, scale: new Vector2(Scale * WindowContainer.ScaleResolutionX, Scale * WindowContainer.ScaleResolutionY));
         }
 
