@@ -9,7 +9,7 @@
   <Identity
     Name="054ee619-41f0-4466-b6b7-bf2f2757067a"
     Publisher="CN=jcape"
-    Version="1.0.0.0" />
+    Version="0.1.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="054ee619-41f0-4466-b6b7-bf2f2757067a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
