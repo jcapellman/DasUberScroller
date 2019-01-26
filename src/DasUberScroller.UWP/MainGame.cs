@@ -14,6 +14,7 @@ namespace DasUberScroller.UWP
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Player _player;
+        private Level _level;
 
         public MainGame()
         {
@@ -31,6 +32,7 @@ namespace DasUberScroller.UWP
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _player = new Player(Content.Load<Texture2D>("hero_spritesheet"), Window.ClientBounds.Height);
+            _level = new Level(Content.Load<Texture2D>("road"));
         }
         
         /// <summary>
@@ -63,6 +65,8 @@ namespace DasUberScroller.UWP
             GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin();
+
+            _level.Render(_spriteBatch);
 
             _player.Render(_spriteBatch);
 
