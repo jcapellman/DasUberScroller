@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-using DasUberScroller.UWP.Containers;
+﻿using DasUberScroller.UWP.Containers;
 using DasUberScroller.UWP.Managers;
-using DasUberScroller.UWP.Objects;
+using DasUberScroller.UWP.Screens;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,10 +16,8 @@ namespace DasUberScroller.UWP
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private readonly GameContentManager _gameContentManager;
-
-        private List<BaseObject> _gameObjects = new List<BaseObject>();
-
+        private readonly GameScreenManager _gameScreenManager;
+        
         private WindowContainer WindowContainer => new WindowContainer
         {
             ResolutionX = Window.ClientBounds.Width,
@@ -35,26 +31,19 @@ namespace DasUberScroller.UWP
 
             Window.ClientSizeChanged += Window_ClientSizeChanged;
 
-            _gameContentManager = new GameContentManager(Content);
+            _gameScreenManager = new GameScreenManager(Content);
         }
 
         private void Window_ClientSizeChanged(object sender, System.EventArgs e)
         {
-            foreach (var gameObject in _gameObjects)
-            {
-                gameObject.UpdateWindow(WindowContainer);
-            }
+            _gameScreenManager.UpdateCurrentScreenWindow(WindowContainer);
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var player = new Player(_gameContentManager, WindowContainer);
-            var level = new Level(_gameContentManager, WindowContainer);
-
-            _gameObjects.Add(level);
-            _gameObjects.Add(player);
+            _gameScreenManager.LoadScreen(new LevelScreen(), WindowContainer);
         }
 
         protected override void Update(GameTime gameTime)
@@ -66,10 +55,7 @@ namespace DasUberScroller.UWP
                 Exit();
             }
 
-            foreach (var gameObject in _gameObjects)
-            {
-                gameObject.Update(state, gameTime);
-            }
+            _gameScreenManager.UpdateCurrentScreen(state, gameTime);
             
             base.Update(gameTime);
         }
@@ -81,10 +67,7 @@ namespace DasUberScroller.UWP
 
             _spriteBatch.Begin();
 
-            foreach (var gameObject in _gameObjects)
-            {
-                gameObject.Render(_spriteBatch, _gameContentManager);
-            }
+            _gameScreenManager.RenderCurrentScreen(_spriteBatch);
             
             _spriteBatch.End();
 
