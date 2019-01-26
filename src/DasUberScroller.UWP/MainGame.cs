@@ -43,7 +43,7 @@ namespace DasUberScroller.UWP
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _gameScreenManager.LoadScreen(new LevelScreen(), WindowContainer);
+            _gameScreenManager.LoadScreen(new SplashScreen(), WindowContainer);
         }
 
         protected override void Update(GameTime gameTime)
@@ -60,7 +60,6 @@ namespace DasUberScroller.UWP
             base.Update(gameTime);
         }
 
-        [System.Obsolete]
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
