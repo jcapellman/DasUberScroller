@@ -2,6 +2,7 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace DasUberScroller.UWP.Objects
 {
@@ -20,7 +21,15 @@ namespace DasUberScroller.UWP.Objects
         }
 
         [System.Obsolete]
-        public void Render(SpriteBatch spriteBatch)
+        public override void Render(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(_clouds, new Rectangle(0, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), Color.White);
+            spriteBatch.Draw(_animatedClouds, new Vector2(0 + _animationFrameX, 0));
+
+            spriteBatch.Draw(_road, new Rectangle(0, WindowContainer.ResolutionY - _road.Height, WindowContainer.ResolutionX, _road.Height), Color.White);
+        }
+
+        public override void Update(KeyboardState keyboardState, GameTime gameTime)
         {
             if (_animationFrameX < (-1 * WindowContainer.ResolutionX))
             {
@@ -30,11 +39,6 @@ namespace DasUberScroller.UWP.Objects
             {
                 _animationFrameX -= 1;
             }
-
-            spriteBatch.Draw(_clouds, new Rectangle(0, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), Color.White);
-            spriteBatch.Draw(_animatedClouds, new Vector2(0 + _animationFrameX, 0));
-
-            spriteBatch.Draw(_road, new Rectangle(0, WindowContainer.ResolutionY - _road.Height, WindowContainer.ResolutionX, _road.Height), Color.White);
         }
     }
 }
