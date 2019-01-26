@@ -1,4 +1,4 @@
-﻿namespace DasSidescroller.UWP
+﻿namespace DasUberScroller.UWP
 {
     /// <summary>
     /// The main class.

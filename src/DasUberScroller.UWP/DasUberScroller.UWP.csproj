@@ -8,8 +8,8 @@
     <ProjectGuid>{F7D5D3B5-A898-40D7-974D-68642C246350}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DasSidescroller.UWP</RootNamespace>
-    <AssemblyName>DasSidescroller.UWP</AssemblyName>
+    <RootNamespace>DasUberScroller.UWP</RootNamespace>
+    <AssemblyName>DasUberScroller.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17763.0</TargetPlatformVersion>
