@@ -1,4 +1,6 @@
-﻿using DasUberScroller.UWP.Containers;
+﻿using System.Collections.Generic;
+
+using DasUberScroller.UWP.Containers;
 using DasUberScroller.UWP.Objects;
 
 using Microsoft.Xna.Framework;
@@ -14,8 +16,8 @@ namespace DasUberScroller.UWP
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private Player _player;
-        private Level _level;
+
+        private List<BaseObject> _gameObjects = new List<BaseObject>();
 
         private WindowContainer WindowContainer => new WindowContainer
         {
@@ -27,28 +29,43 @@ namespace DasUberScroller.UWP
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            Window.ClientSizeChanged += Window_ClientSizeChanged;
+        }
+
+        private void Window_ClientSizeChanged(object sender, System.EventArgs e)
+        {
+            foreach (var gameObject in _gameObjects)
+            {
+                gameObject.UpdateWindow(WindowContainer);
+            }
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _player = new Player(Content.Load<Texture2D>("hero_spritesheet"), WindowContainer);
-            _level = new Level(Content.Load<Texture2D>("road"), Content.Load<Texture2D>("clouds1"), Content.Load<Texture2D>("clouds2"), WindowContainer);
+            var player = new Player(Content.Load<Texture2D>("hero_spritesheet"), WindowContainer);
+            var level = new Level(Content.Load<Texture2D>("road"), Content.Load<Texture2D>("clouds1"), Content.Load<Texture2D>("clouds2"), WindowContainer);
+
+            _gameObjects.Add(level);
+            _gameObjects.Add(player);
         }
 
         protected override void Update(GameTime gameTime)
         {
             var state = Keyboard.GetState();
             
-            // If they hit esc, exit
             if (state.IsKeyDown(Keys.Escape))
             {
                 Exit();
             }
 
-            _player.Update(state, gameTime);
-
+            foreach (var gameObject in _gameObjects)
+            {
+                gameObject.Update(state, gameTime);
+            }
+            
             base.Update(gameTime);
         }
 
@@ -59,9 +76,10 @@ namespace DasUberScroller.UWP
 
             _spriteBatch.Begin();
 
-            _level.Render(_spriteBatch);
-
-            _player.Render(_spriteBatch);
+            foreach (var gameObject in _gameObjects)
+            {
+                gameObject.Render(_spriteBatch);
+            }
             
             _spriteBatch.End();
 
