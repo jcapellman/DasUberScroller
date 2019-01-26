@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using DasUberScroller.UWP.Containers;
+using DasUberScroller.UWP.Managers;
 using DasUberScroller.UWP.Objects;
 
 using Microsoft.Xna.Framework;
@@ -17,6 +18,8 @@ namespace DasUberScroller.UWP
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private readonly GameContentManager _gameContentManager;
+
         private List<BaseObject> _gameObjects = new List<BaseObject>();
 
         private WindowContainer WindowContainer => new WindowContainer
@@ -31,6 +34,8 @@ namespace DasUberScroller.UWP
             Content.RootDirectory = "Content";
 
             Window.ClientSizeChanged += Window_ClientSizeChanged;
+
+            _gameContentManager = new GameContentManager(Content);
         }
 
         private void Window_ClientSizeChanged(object sender, System.EventArgs e)
@@ -45,8 +50,8 @@ namespace DasUberScroller.UWP
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var player = new Player(Content.Load<Texture2D>("hero_spritesheet"), WindowContainer);
-            var level = new Level(Content.Load<Texture2D>("road"), Content.Load<Texture2D>("clouds1"), Content.Load<Texture2D>("clouds2"), WindowContainer);
+            var player = new Player(_gameContentManager, WindowContainer);
+            var level = new Level(_gameContentManager, WindowContainer);
 
             _gameObjects.Add(level);
             _gameObjects.Add(player);
@@ -78,7 +83,7 @@ namespace DasUberScroller.UWP
 
             foreach (var gameObject in _gameObjects)
             {
-                gameObject.Render(_spriteBatch);
+                gameObject.Render(_spriteBatch, _gameContentManager);
             }
             
             _spriteBatch.End();
