@@ -106,6 +106,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Containers\WindowContainer.cs" />
+    <Compile Include="Objects\BaseObject.cs" />
     <Compile Include="Objects\Level.cs" />
     <Compile Include="Objects\Player.cs" />
     <Compile Include="Program.cs" />

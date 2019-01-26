@@ -1,4 +1,5 @@
-﻿using DasUberScroller.UWP.Objects;
+﻿using DasUberScroller.UWP.Containers;
+using DasUberScroller.UWP.Objects;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,6 +17,12 @@ namespace DasUberScroller.UWP
         private Player _player;
         private Level _level;
 
+        private WindowContainer WindowContainer => new WindowContainer
+        {
+            ResolutionX = Window.ClientBounds.Width,
+            ResolutionY = Window.ClientBounds.Height
+        };
+
         public MainGame()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -31,8 +38,8 @@ namespace DasUberScroller.UWP
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _player = new Player(Content.Load<Texture2D>("hero_spritesheet"), Window.ClientBounds.Height);
-            _level = new Level(Content.Load<Texture2D>("road"), Content.Load<Texture2D>("clouds1"), Content.Load<Texture2D>("clouds2"), Window.ClientBounds.Height);
+            _player = new Player(Content.Load<Texture2D>("hero_spritesheet"), WindowContainer);
+            _level = new Level(Content.Load<Texture2D>("road"), Content.Load<Texture2D>("clouds1"), Content.Load<Texture2D>("clouds2"), WindowContainer);
         }
         
         /// <summary>
