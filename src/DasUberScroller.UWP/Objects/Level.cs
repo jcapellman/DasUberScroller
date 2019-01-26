@@ -1,4 +1,5 @@
 ﻿using DasUberScroller.UWP.Containers;
+using DasUberScroller.UWP.Managers;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,25 +9,28 @@ namespace DasUberScroller.UWP.Objects
 {
     public class Level : BaseObject
     {
-        private Texture2D _road;
-        private Texture2D _clouds;
-        private Texture2D _animatedClouds;
         private int _animationFrameX = 0;
 
-        public Level(Texture2D road, Texture2D clouds, Texture2D animatedClouds, WindowContainer windowContainer) : base(windowContainer)
+        private const string TextureFloor = "road";
+        private const string TextureClouds = "clouds1";
+        private const string TextureAnimatedClouds = "clouds2";
+
+        public Level(GameContentManager contentManager, WindowContainer windowContainer) : base(windowContainer)
         {
-            _road = road;
-            _clouds = clouds;
-            _animatedClouds = animatedClouds;
+            contentManager.LoadTexture(TextureFloor);
+            contentManager.LoadTexture(TextureClouds);
+            contentManager.LoadTexture(TextureAnimatedClouds);
         }
 
         [System.Obsolete]
-        public override void Render(SpriteBatch spriteBatch)
+        public override void Render(SpriteBatch spriteBatch, GameContentManager gameContentManager)
         {
-            spriteBatch.Draw(_clouds, new Rectangle(0, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), Color.White);
-            spriteBatch.Draw(_animatedClouds, new Vector2(0 + _animationFrameX, 0), scale: new Vector2(WindowContainer.ScaleResolutionX, WindowContainer.ScaleResolutionY));
+            spriteBatch.Draw(gameContentManager.GetTexture(TextureClouds), new Rectangle(0, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), Color.White);
+            spriteBatch.Draw(gameContentManager.GetTexture(TextureClouds), new Vector2(0 + _animationFrameX, 0), scale: new Vector2(WindowContainer.ScaleResolutionX, WindowContainer.ScaleResolutionY));
 
-            spriteBatch.Draw(_road, new Rectangle(0, WindowContainer.ResolutionY - _road.Height, WindowContainer.ResolutionX, _road.Height), Color.White);
+            var floorTexture = gameContentManager.GetTexture(TextureFloor);
+
+            spriteBatch.Draw(floorTexture, new Rectangle(0, WindowContainer.ResolutionY - floorTexture.Height, WindowContainer.ResolutionX, floorTexture.Height), Color.White);
         }
 
         public override void Update(KeyboardState keyboardState, GameTime gameTime)
