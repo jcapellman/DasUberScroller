@@ -24,7 +24,7 @@ namespace DasUberScroller.UWP.Objects
         public override void Render(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_clouds, new Rectangle(0, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), Color.White);
-            spriteBatch.Draw(_animatedClouds, new Vector2(0 + _animationFrameX, 0));
+            spriteBatch.Draw(_animatedClouds, new Vector2(0 + _animationFrameX, 0), scale: new Vector2(WindowContainer.ScaleResolutionX, WindowContainer.ScaleResolutionY));
 
             spriteBatch.Draw(_road, new Rectangle(0, WindowContainer.ResolutionY - _road.Height, WindowContainer.ResolutionX, _road.Height), Color.White);
         }
