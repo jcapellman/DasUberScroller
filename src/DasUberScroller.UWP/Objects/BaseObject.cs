@@ -1,4 +1,5 @@
 ﻿using DasUberScroller.UWP.Containers;
+using DasUberScroller.UWP.Managers;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,7 +21,7 @@ namespace DasUberScroller.UWP.Objects
             WindowContainer = windowContainer;
         }
 
-        public abstract void Render(SpriteBatch spriteBatch);
+        public abstract void Render(SpriteBatch spriteBatch, GameContentManager gameContentManager);
         
         public abstract void Update(KeyboardState keyboardState, GameTime gameTime);
     }
