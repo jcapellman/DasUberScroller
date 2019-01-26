@@ -108,6 +108,7 @@
   <ItemGroup>
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Containers\WindowContainer.cs" />
+    <Compile Include="Managers\GameContentManager.cs" />
     <Compile Include="Objects\BaseObject.cs" />
     <Compile Include="Objects\Level.cs" />
     <Compile Include="Objects\Player.cs" />
