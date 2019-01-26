@@ -34,7 +34,7 @@ namespace DasUberScroller.UWP.Objects
             spriteBatch.Draw(_clouds, new Rectangle(0, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), Color.White);
             spriteBatch.Draw(_animatedClouds, new Vector2(0 + _animationFrameX, 0));
 
-            spriteBatch.Draw(_road, new Rectangle(0, WindowContainer.ResolutionY - 184, WindowContainer.ResolutionX, 184), Color.White);
+            spriteBatch.Draw(_road, new Rectangle(0, WindowContainer.ResolutionY - _road.Height, WindowContainer.ResolutionX, _road.Height), Color.White);
         }
     }
 }
