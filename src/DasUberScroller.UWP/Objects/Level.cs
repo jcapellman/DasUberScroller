@@ -22,7 +22,6 @@ namespace DasUberScroller.UWP.Objects
             contentManager.LoadTexture(TextureAnimatedClouds);
         }
 
-        [System.Obsolete]
         public override void Render(SpriteBatch spriteBatch, GameContentManager gameContentManager)
         {
             spriteBatch.Draw(gameContentManager.GetTexture(TextureClouds), new Rectangle(0, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), Color.White);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using DasUberScroller.UWP.Containers;
 using DasUberScroller.UWP.Managers;
@@ -13,6 +14,13 @@ namespace DasUberScroller.UWP.Screens
     public abstract class BaseScreen
     {
         private List<BaseObject> _gameObjects = new List<BaseObject>();
+
+        public event EventHandler<BaseScreen> ChangeScreen;
+
+        protected void OnChangeScreen(object sender, BaseScreen screen)
+        {
+            ChangeScreen?.Invoke(sender, screen);
+        }
 
         protected void AddObject(BaseObject obj)
         {
@@ -37,7 +45,7 @@ namespace DasUberScroller.UWP.Screens
             }
         }
 
-        public void UpdateScreen(KeyboardState keyboardState, GameTime gameTime)
+        public virtual void UpdateScreen(KeyboardState keyboardState, GameTime gameTime)
         {
             foreach (var gameObject in _gameObjects)
             {
