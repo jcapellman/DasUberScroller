@@ -19,6 +19,8 @@ namespace DasUberScroller.UWP.Objects
         private const float Scale = 3.0f;
         private const int SpriteHeight = 100;
         private const int SpriteWidth = 80;
+        private const int MovementX = 30;
+        private int ScaledSpriteWidth => (int) (SpriteWidth * Scale * WindowContainer.ScaleResolutionX);
 
         private const string spriteSheetName = "hero_spritesheet";
 
@@ -61,7 +63,10 @@ namespace DasUberScroller.UWP.Objects
                     column++;
                 }
 
-                _xPosition+=15;
+                if (_xPosition + ScaledSpriteWidth < WindowContainer.ResolutionX)
+                {
+                    _xPosition += MovementX;
+                }
             }
 
             if (keyboardState.IsKeyDown(Keys.Left))
@@ -75,7 +80,10 @@ namespace DasUberScroller.UWP.Objects
                     column++;
                 }
 
-                _xPosition-=15;
+                if (_xPosition - MovementX > 0)
+                {
+                    _xPosition -= MovementX;
+                }
             }
         }
     }
