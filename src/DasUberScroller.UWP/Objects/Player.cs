@@ -28,13 +28,13 @@ namespace DasUberScroller.UWP.Objects
         }
 
         [System.Obsolete]
-        public void Render(SpriteBatch spriteBatch)
+        public override void Render(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_playerSheet, position: new Vector2(_xPosition, WindowContainer.ResolutionY - 300),
                 sourceRectangle: new Rectangle(column * 80, row * 100, 80, 100), color: Color.White, scale: new Vector2(3.0f, 3.0f));
         }
 
-        public void Update(KeyboardState keyboardState, GameTime gameTime)
+        public override void Update(KeyboardState keyboardState, GameTime gameTime)
         {
             _lastMs += gameTime.ElapsedGameTime.TotalMilliseconds;
 
