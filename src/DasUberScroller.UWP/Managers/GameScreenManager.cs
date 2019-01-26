@@ -11,6 +11,7 @@ namespace DasUberScroller.UWP.Managers
     public class GameScreenManager
     {
         private GameContentManager _gameContentManager;
+        private WindowContainer _windowContainer;
 
         private BaseScreen _currentScreen;
 
@@ -19,11 +20,26 @@ namespace DasUberScroller.UWP.Managers
             _gameContentManager = new GameContentManager(contentManager);
         }
 
-        public void LoadScreen(BaseScreen screen, WindowContainer windowContainer)
+        private void SwitchScreen(BaseScreen screen)
         {
             _currentScreen = screen;
 
-            _currentScreen.LoadContent(_gameContentManager, windowContainer);
+            _currentScreen.ChangeScreen -= _currentScreen_ChangeScreen;
+            _currentScreen.ChangeScreen += _currentScreen_ChangeScreen;
+
+            _currentScreen.LoadContent(_gameContentManager, _windowContainer);
+        }
+
+        public void LoadScreen(BaseScreen screen, WindowContainer windowContainer)
+        {
+            _windowContainer = windowContainer;
+
+            SwitchScreen(screen);
+        }
+
+        private void _currentScreen_ChangeScreen(object sender, BaseScreen screen)
+        {
+            SwitchScreen(screen);
         }
 
         public void RenderCurrentScreen(SpriteBatch spriteBatch)
