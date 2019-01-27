@@ -11,9 +11,13 @@ namespace DasUberScroller.UWP.Objects
     {
         protected WindowContainer WindowContainer;
 
+        public bool IsActive { get; protected set; }
+
         protected BaseObject(WindowContainer windowContainer)
         {
             WindowContainer = windowContainer;
+
+            IsActive = true;
         }
 
         public void UpdateWindow(WindowContainer windowContainer)
