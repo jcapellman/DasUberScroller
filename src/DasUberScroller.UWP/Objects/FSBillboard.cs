@@ -18,7 +18,7 @@ namespace DasUberScroller.UWP.Objects
 
         public override void Render(SpriteBatch spriteBatch, GameContentManager gameContentManager)
         {
-            spriteBatch.Draw(gameContentManager.GetTexture(_textureName), Vector2.Zero, sourceRectangle: new Rectangle(0,0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), scale: new Vector2(WindowContainer.ScaleResolutionX, WindowContainer.ScaleResolutionY), color: Color.White);
+            Draw(_textureName, new Rectangle(0, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), spriteBatch, gameContentManager);
         }
 
         public override void Update(KeyboardState keyboardState, GameTime gameTime)
