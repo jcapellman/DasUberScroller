@@ -9,7 +9,7 @@ namespace DasUberScroller.UWP.Screens
         public override bool LoadContent(GameContentManager gameContentManager, WindowContainer windowContainer)
         {
             var player = new Player(gameContentManager, windowContainer);
-            var level = new Level(gameContentManager, windowContainer);
+            var level = new Level(Common.Constants.DEFAULT_LEVEL_NAME, gameContentManager, windowContainer);
             
             AddObject(level);
             AddObject(player);
