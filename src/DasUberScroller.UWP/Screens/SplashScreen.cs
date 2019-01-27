@@ -17,7 +17,7 @@ namespace DasUberScroller.UWP.Screens
         {
             gameContentManager.LoadTexture(TextureName);
 
-            AddObject(new FSBillboard(TextureName, windowContainer));
+            AddObject(new FsBillboard(TextureName, windowContainer));
 
             return true;
         }
