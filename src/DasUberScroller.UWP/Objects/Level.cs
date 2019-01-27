@@ -15,9 +15,17 @@ namespace DasUberScroller.UWP.Objects
         private const string TextureClouds = "clouds1"; 
         private const string TextureAnimatedClouds = "clouds2";
 
+        private readonly TextureContainer _floorTextureContainer;
+
         public Level(GameContentManager contentManager, WindowContainer windowContainer) : base(windowContainer)
         {
-            contentManager.LoadTexture(TextureFloor);
+            var (loaded, texture) = contentManager.LoadTexture(TextureFloor);
+
+            if (loaded)
+            {
+                _floorTextureContainer = texture;
+            }
+
             contentManager.LoadTexture(TextureClouds);
             contentManager.LoadTexture(TextureAnimatedClouds);
         }
@@ -28,9 +36,12 @@ namespace DasUberScroller.UWP.Objects
 
             Draw(TextureAnimatedClouds, new Rectangle(0 + _animationFrameX, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), spriteBatch, gameContentManager);
             
-            var floorTexture = gameContentManager.GetTexture(TextureFloor);
-
-            Draw(TextureFloor, new Rectangle(0, 0, WindowContainer.ResolutionX, floorTexture.Height), new Vector2(0, WindowContainer.ResolutionY - floorTexture.Height), 1.0f, spriteBatch, gameContentManager);
+            Draw(_floorTextureContainer.Name, 
+                new Rectangle(0, 0, WindowContainer.ResolutionX, _floorTextureContainer.Height), 
+                new Vector2(0, WindowContainer.ResolutionY - _floorTextureContainer.Height), 
+                1.0f, 
+                spriteBatch, 
+                gameContentManager);
         }
 
         public override void Update(KeyboardState keyboardState, GameTime gameTime)
