@@ -12,7 +12,7 @@ namespace DasUberScroller.UWP.Objects
         private int _animationFrameX = 0;
 
         private const string TextureFloor = "road";
-        private const string TextureClouds = "clouds1";
+        private const string TextureClouds = "clouds1"; 
         private const string TextureAnimatedClouds = "clouds2";
 
         public Level(GameContentManager contentManager, WindowContainer windowContainer) : base(windowContainer)
@@ -24,12 +24,13 @@ namespace DasUberScroller.UWP.Objects
 
         public override void Render(SpriteBatch spriteBatch, GameContentManager gameContentManager)
         {
-            spriteBatch.Draw(gameContentManager.GetTexture(TextureClouds), new Rectangle(0, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), Color.White);
-            spriteBatch.Draw(gameContentManager.GetTexture(TextureClouds), new Vector2(0 + _animationFrameX, 0), scale: new Vector2(WindowContainer.ScaleResolutionX, WindowContainer.ScaleResolutionY));
+            Draw(TextureClouds, new Rectangle(0, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), spriteBatch, gameContentManager);
 
+            Draw(TextureAnimatedClouds, new Rectangle(0 + _animationFrameX, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), spriteBatch, gameContentManager);
+            
             var floorTexture = gameContentManager.GetTexture(TextureFloor);
 
-            spriteBatch.Draw(floorTexture, new Rectangle(0, WindowContainer.ResolutionY - floorTexture.Height, WindowContainer.ResolutionX, floorTexture.Height), Color.White);
+            Draw(TextureFloor, new Rectangle(0, 0, WindowContainer.ResolutionX, floorTexture.Height), new Vector2(0, WindowContainer.ResolutionY - floorTexture.Height), 1.0f, spriteBatch, gameContentManager);
         }
 
         public override void Update(KeyboardState keyboardState, GameTime gameTime)

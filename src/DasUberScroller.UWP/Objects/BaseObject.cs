@@ -25,8 +25,7 @@ namespace DasUberScroller.UWP.Objects
         
         public abstract void Update(KeyboardState keyboardState, GameTime gameTime);
 
-        protected void Draw(string textureName, Rectangle source, SpriteBatch spriteBatch,
-            GameContentManager gameContentManager)
+        protected void Draw(string textureName, Rectangle source, SpriteBatch spriteBatch, GameContentManager gameContentManager)
         {
             Draw(textureName, source, Vector2.Zero, 1.0f, spriteBatch, gameContentManager);
         }
