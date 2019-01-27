@@ -109,6 +109,7 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Containers\TextureContainer.cs" />
     <Compile Include="Containers\WindowContainer.cs" />
+    <Compile Include="JSONObjects\LevelJSON.cs" />
     <Compile Include="Managers\GameContentManager.cs" />
     <Compile Include="Managers\GameScreenManager.cs" />
     <Compile Include="Objects\BaseObject.cs" />
@@ -128,6 +129,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="DasSidescroller.UWP_TemporaryKey.pfx" />
+    <Content Include="Assets\Levels\E1M1.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
@@ -146,7 +148,11 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.3</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.1</Version>
+    </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
