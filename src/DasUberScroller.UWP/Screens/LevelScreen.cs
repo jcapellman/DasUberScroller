@@ -10,7 +10,7 @@ namespace DasUberScroller.UWP.Screens
         {
             var player = new Player(gameContentManager, windowContainer);
             var level = new Level(gameContentManager, windowContainer);
-
+            
             AddObject(level);
             AddObject(player);
 
