@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using DasUberScroller.UWP.Containers;
 using DasUberScroller.UWP.Managers;
@@ -31,7 +32,7 @@ namespace DasUberScroller.UWP.Screens
 
         public void RenderScreen(SpriteBatch spireBatch, GameContentManager gameContentManager)
         {
-            foreach (var gameObject in _gameObjects)
+            foreach (var gameObject in _gameObjects.Where(a => a.IsActive))
             {
                 gameObject.Render(spireBatch, gameContentManager);
             }
