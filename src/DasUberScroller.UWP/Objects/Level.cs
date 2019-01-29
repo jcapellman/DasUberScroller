@@ -19,8 +19,6 @@ namespace DasUberScroller.UWP.Objects
 {
     public class Level : BaseObject
     {
-        private int _animationFrameX = 0;
-        
         private readonly LevelJSON _levelJson;
 
         private readonly List<BaseObject> _levelObjects = new List<BaseObject>();
@@ -52,14 +50,12 @@ namespace DasUberScroller.UWP.Objects
 
             if (!string.IsNullOrEmpty(_levelJson.TextureAtmosphereOverlay))
             {
-                contentManager.LoadTexture(_levelJson.TextureAtmosphereOverlay);
+                _levelObjects.Add(new AnimatedAtmosphere(_levelJson.TextureAtmosphereOverlay, contentManager, windowContainer));
             }
         }
 
         public override void Render(SpriteBatch spriteBatch, GameContentManager gameContentManager)
         {
-            Draw(_levelJson.TextureAtmosphereOverlay, new Rectangle(0 + _animationFrameX, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), spriteBatch, gameContentManager);
-
             foreach (var levelObject in _levelObjects)
             {
                 levelObject.Render(spriteBatch, gameContentManager);
@@ -68,14 +64,6 @@ namespace DasUberScroller.UWP.Objects
 
         public override void Update(KeyboardState keyboardState, GameTime gameTime)
         {
-            if (_animationFrameX < (-1 * WindowContainer.ResolutionX))
-            {
-                _animationFrameX = WindowContainer.ResolutionX;
-            }
-            else
-            {
-                _animationFrameX -= 1;
-            }
         }
     }
 }
