@@ -47,7 +47,7 @@ namespace DasUberScroller.UWP.Objects
 
             if (!string.IsNullOrEmpty(_levelJson.TextureAtmosphere))
             {
-                contentManager.LoadTexture(_levelJson.TextureAtmosphere);
+                _levelObjects.Add(new Atmosphere(_levelJson.TextureAtmosphere, contentManager, windowContainer));
             }
 
             if (!string.IsNullOrEmpty(_levelJson.TextureAtmosphereOverlay))
@@ -58,8 +58,6 @@ namespace DasUberScroller.UWP.Objects
 
         public override void Render(SpriteBatch spriteBatch, GameContentManager gameContentManager)
         {
-            Draw(_levelJson.TextureAtmosphere, new Rectangle(0, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), spriteBatch, gameContentManager);
-
             Draw(_levelJson.TextureAtmosphereOverlay, new Rectangle(0 + _animationFrameX, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), spriteBatch, gameContentManager);
 
             foreach (var levelObject in _levelObjects)

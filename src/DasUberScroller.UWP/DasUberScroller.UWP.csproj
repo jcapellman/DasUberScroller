@@ -112,6 +112,7 @@
     <Compile Include="JSONObjects\LevelJSON.cs" />
     <Compile Include="Managers\GameContentManager.cs" />
     <Compile Include="Managers\GameScreenManager.cs" />
+    <Compile Include="Objects\Atmosphere.cs" />
     <Compile Include="Objects\BaseObject.cs" />
     <Compile Include="Objects\Bullet.cs" />
     <Compile Include="Objects\Floor.cs" />
