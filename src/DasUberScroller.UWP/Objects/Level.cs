@@ -8,7 +8,7 @@ using DasUberScroller.UWP.Common;
 using DasUberScroller.UWP.Containers;
 using DasUberScroller.UWP.JSONObjects;
 using DasUberScroller.UWP.Managers;
-
+using DasUberScroller.UWP.Objects.LevelObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;

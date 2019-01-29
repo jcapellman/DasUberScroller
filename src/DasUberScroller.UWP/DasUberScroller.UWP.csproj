@@ -112,11 +112,12 @@
     <Compile Include="JSONObjects\LevelJSON.cs" />
     <Compile Include="Managers\GameContentManager.cs" />
     <Compile Include="Managers\GameScreenManager.cs" />
-    <Compile Include="Objects\AnimatedAtmosphere.cs" />
-    <Compile Include="Objects\Atmosphere.cs" />
+    <Compile Include="Objects\LevelObjects\AnimatedAtmosphere.cs" />
+    <Compile Include="Objects\LevelObjects\Atmosphere.cs" />
     <Compile Include="Objects\BaseObject.cs" />
     <Compile Include="Objects\Bullet.cs" />
-    <Compile Include="Objects\Floor.cs" />
+    <Compile Include="Objects\LevelObjects\Base\LevelObject.cs" />
+    <Compile Include="Objects\LevelObjects\Floor.cs" />
     <Compile Include="Objects\FSBillboard.cs" />
     <Compile Include="Objects\Level.cs" />
     <Compile Include="Objects\Player.cs" />
