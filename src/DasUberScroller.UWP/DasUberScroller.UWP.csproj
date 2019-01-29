@@ -114,6 +114,7 @@
     <Compile Include="Managers\GameScreenManager.cs" />
     <Compile Include="Objects\BaseObject.cs" />
     <Compile Include="Objects\Bullet.cs" />
+    <Compile Include="Objects\Floor.cs" />
     <Compile Include="Objects\FSBillboard.cs" />
     <Compile Include="Objects\Level.cs" />
     <Compile Include="Objects\Player.cs" />
