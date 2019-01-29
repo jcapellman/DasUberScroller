@@ -109,7 +109,10 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Containers\TextureContainer.cs" />
     <Compile Include="Containers\WindowContainer.cs" />
+    <Compile Include="Enums\LevelContentTypes.cs" />
+    <Compile Include="JSONObjects\LevelItemJSON.cs" />
     <Compile Include="JSONObjects\LevelJSON.cs" />
+    <Compile Include="JSONObjects\LevelScreenContentJSON.cs" />
     <Compile Include="Managers\GameContentManager.cs" />
     <Compile Include="Managers\GameScreenManager.cs" />
     <Compile Include="Objects\LevelObjects\AnimatedAtmosphere.cs" />
