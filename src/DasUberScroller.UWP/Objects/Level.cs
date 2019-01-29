@@ -6,9 +6,11 @@ using Windows.Storage;
 
 using DasUberScroller.UWP.Common;
 using DasUberScroller.UWP.Containers;
+using DasUberScroller.UWP.Enums;
 using DasUberScroller.UWP.JSONObjects;
 using DasUberScroller.UWP.Managers;
 using DasUberScroller.UWP.Objects.LevelObjects;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -36,19 +38,23 @@ namespace DasUberScroller.UWP.Objects
         {
             var levelJson = LoadLevel(levelName);
 
-            if (!string.IsNullOrEmpty(levelJson.TextureFloor))
+            foreach (var screen in levelJson.Screens)
             {
-                _levelObjects.Add(new Floor(levelJson.TextureFloor, contentManager, windowContainer));
-            }
-
-            if (!string.IsNullOrEmpty(levelJson.TextureAtmosphere))
-            {
-                _levelObjects.Add(new Atmosphere(levelJson.TextureAtmosphere, contentManager, windowContainer));
-            }
-
-            if (!string.IsNullOrEmpty(levelJson.TextureAtmosphereOverlay))
-            {
-                _levelObjects.Add(new AnimatedAtmosphere(levelJson.TextureAtmosphereOverlay, contentManager, windowContainer));
+                foreach (var item in screen.Items)
+                {
+                    switch (item.LevelContentType)
+                    {
+                        case LevelContentTypes.AnimatedAtmosphere:
+                            _levelObjects.Add(new AnimatedAtmosphere(item.TextureName, contentManager, windowContainer));
+                            break;
+                        case LevelContentTypes.Atmosphere:
+                            _levelObjects.Add(new Atmosphere(item.TextureName, contentManager, windowContainer));
+                            break;
+                        case LevelContentTypes.Floor:
+                            _levelObjects.Add(new Floor(item.TextureName, contentManager, windowContainer));
+                            break;
+                    }
+                }
             }
         }
 
