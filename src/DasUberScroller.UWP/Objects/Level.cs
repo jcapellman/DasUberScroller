@@ -19,11 +19,9 @@ namespace DasUberScroller.UWP.Objects
 {
     public class Level : BaseObject
     {
-        private readonly LevelJSON _levelJson;
-
         private readonly List<BaseObject> _levelObjects = new List<BaseObject>();
 
-        private LevelJSON LoadLevel(string levelName)
+        private static LevelJSON LoadLevel(string levelName)
         {
             var filePath = Path.Combine(Constants.PATH_LEVELS, $"{levelName}{Constants.FILE_EXTENSION_LEVEL}");
 
@@ -36,21 +34,21 @@ namespace DasUberScroller.UWP.Objects
 
         public Level(string levelName, GameContentManager contentManager, WindowContainer windowContainer) : base(windowContainer)
         {
-            _levelJson = LoadLevel(levelName);
+            var levelJson = LoadLevel(levelName);
 
-            if (!string.IsNullOrEmpty(_levelJson.TextureFloor))
+            if (!string.IsNullOrEmpty(levelJson.TextureFloor))
             {
-                _levelObjects.Add(new Floor(_levelJson.TextureFloor, contentManager, windowContainer));
+                _levelObjects.Add(new Floor(levelJson.TextureFloor, contentManager, windowContainer));
             }
 
-            if (!string.IsNullOrEmpty(_levelJson.TextureAtmosphere))
+            if (!string.IsNullOrEmpty(levelJson.TextureAtmosphere))
             {
-                _levelObjects.Add(new Atmosphere(_levelJson.TextureAtmosphere, contentManager, windowContainer));
+                _levelObjects.Add(new Atmosphere(levelJson.TextureAtmosphere, contentManager, windowContainer));
             }
 
-            if (!string.IsNullOrEmpty(_levelJson.TextureAtmosphereOverlay))
+            if (!string.IsNullOrEmpty(levelJson.TextureAtmosphereOverlay))
             {
-                _levelObjects.Add(new AnimatedAtmosphere(_levelJson.TextureAtmosphereOverlay, contentManager, windowContainer));
+                _levelObjects.Add(new AnimatedAtmosphere(levelJson.TextureAtmosphereOverlay, contentManager, windowContainer));
             }
         }
 
