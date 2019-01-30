@@ -1,4 +1,5 @@
 ﻿using DasUberScroller.UWP.Containers;
+using DasUberScroller.UWP.Enums;
 using DasUberScroller.UWP.Managers;
 using DasUberScroller.UWP.Objects.LevelObjects.Base;
 
@@ -12,6 +13,8 @@ namespace DasUberScroller.UWP.Objects.LevelObjects
     {
         private int _animationFrameX = 0;
         
+        public AnimatedAtmosphere() : base(null, null, null) { }
+
         public AnimatedAtmosphere(string textureName, GameContentManager contentManager, WindowContainer windowContainer) : base(textureName, contentManager, windowContainer)
         {
         }
@@ -20,6 +23,8 @@ namespace DasUberScroller.UWP.Objects.LevelObjects
         {
             Draw(TextureContainer.Name, new Rectangle(0 + _animationFrameX, 0, WindowContainer.ResolutionX, WindowContainer.ResolutionY), spriteBatch, gameContentManager);
         }
+
+        public override LevelContentTypes ContentType => LevelContentTypes.AnimatedAtmosphere;
 
         public override void Update(KeyboardState keyboardState, GameTime gameTime)
         {

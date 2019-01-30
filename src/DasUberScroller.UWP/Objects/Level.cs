@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+
 using Windows.Storage;
 
 using DasUberScroller.UWP.Common;
 using DasUberScroller.UWP.Containers;
-using DasUberScroller.UWP.Enums;
 using DasUberScroller.UWP.JSONObjects;
 using DasUberScroller.UWP.Managers;
-using DasUberScroller.UWP.Objects.LevelObjects;
 using DasUberScroller.UWP.Objects.LevelObjects.Base;
 
 using Microsoft.Xna.Framework;
@@ -36,7 +35,7 @@ namespace DasUberScroller.UWP.Objects
             return JsonConvert.DeserializeObject<JSONObjects.LevelJSON>(jsonText);            
         }
 
-        private List<LevelObject> GetLevelObjects() =>
+        private static List<LevelObject> GetLevelObjects() =>
             Assembly.GetAssembly(typeof(LevelObject)).DefinedTypes
                 .Where(a => !a.IsAbstract && a.BaseType == typeof(LevelObject)).Select(a => (LevelObject)Activator.CreateInstance(a)).ToList();
 
@@ -58,7 +57,7 @@ namespace DasUberScroller.UWP.Objects
                         continue;
                     }
 
-                    var levelObject = (LevelObject) Activator.CreateInstance(baseLevelObject.GetType(), new { item.TextureName, contentManager, windowContainer});
+                    var levelObject = (LevelObject) Activator.CreateInstance(baseLevelObject.GetType(), item.TextureName, contentManager, windowContainer);
 
                     _levelObjects.Add(levelObject);
                 }
