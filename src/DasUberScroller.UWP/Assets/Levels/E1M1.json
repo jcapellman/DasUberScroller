@@ -1,6 +1,17 @@
 ﻿{
   "Title": "Gotta start somewhere",
-  "TextureAtmosphere": "clouds1",
-  "TextureAtmosphereOverlay": "clouds2",
-  "TextureFloor": "road"
+  "Screens": [
+    {
+      "items": [
+        {
+          "levelContentType": "Atmosphere",
+          "textureName": "clouds1"
+        },
+        {
+          "levelContentType": "Floor",
+          "textureName": "road"
+        }
+      ]
+    }
+  ] 
 }
