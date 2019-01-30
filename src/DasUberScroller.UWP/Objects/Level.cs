@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-
+using System.Linq;
+using System.Reflection;
 using Windows.Storage;
 
 using DasUberScroller.UWP.Common;
@@ -10,6 +11,7 @@ using DasUberScroller.UWP.Enums;
 using DasUberScroller.UWP.JSONObjects;
 using DasUberScroller.UWP.Managers;
 using DasUberScroller.UWP.Objects.LevelObjects;
+using DasUberScroller.UWP.Objects.LevelObjects.Base;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,26 +36,31 @@ namespace DasUberScroller.UWP.Objects
             return JsonConvert.DeserializeObject<JSONObjects.LevelJSON>(jsonText);            
         }
 
+        private List<LevelObject> GetLevelObjects() =>
+            Assembly.GetAssembly(typeof(LevelObject)).DefinedTypes
+                .Where(a => !a.IsAbstract && a.BaseType == typeof(LevelObject)).Select(a => (LevelObject)Activator.CreateInstance(a)).ToList();
+
         public Level(string levelName, GameContentManager contentManager, WindowContainer windowContainer) : base(windowContainer)
         {
             var levelJson = LoadLevel(levelName);
+
+            var levelObjects = GetLevelObjects();
 
             foreach (var screen in levelJson.Screens)
             {
                 foreach (var item in screen.Items)
                 {
-                    switch (item.LevelContentType)
+                    var baseLevelObject = levelObjects.FirstOrDefault(a => a.ContentType == item.LevelContentType);
+
+                    if (baseLevelObject == null)
                     {
-                        case LevelContentTypes.AnimatedAtmosphere:
-                            _levelObjects.Add(new AnimatedAtmosphere(item.TextureName, contentManager, windowContainer));
-                            break;
-                        case LevelContentTypes.Atmosphere:
-                            _levelObjects.Add(new Atmosphere(item.TextureName, contentManager, windowContainer));
-                            break;
-                        case LevelContentTypes.Floor:
-                            _levelObjects.Add(new Floor(item.TextureName, contentManager, windowContainer));
-                            break;
+                        // TODO Log Invalid Type
+                        continue;
                     }
+
+                    var levelObject = (LevelObject) Activator.CreateInstance(baseLevelObject.GetType(), new { item.TextureName, contentManager, windowContainer});
+
+                    _levelObjects.Add(levelObject);
                 }
             }
         }
