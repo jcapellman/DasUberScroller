@@ -1,4 +1,5 @@
 ﻿using DasUberScroller.UWP.Containers;
+using DasUberScroller.UWP.Enums;
 using DasUberScroller.UWP.Managers;
 using DasUberScroller.UWP.Objects.LevelObjects.Base;
 
@@ -9,6 +10,8 @@ namespace DasUberScroller.UWP.Objects.LevelObjects
 {
     public class Floor : LevelObject
     {
+        public Floor() : base(null, null, null) { }
+
         public Floor(string textureName, GameContentManager contentManager, WindowContainer windowContainer) : base(textureName, contentManager, windowContainer)
         {
         }
@@ -22,5 +25,7 @@ namespace DasUberScroller.UWP.Objects.LevelObjects
                 spriteBatch,
                 gameContentManager);
         }
+
+        public override LevelContentTypes ContentType => LevelContentTypes.Floor;
     }
 }
