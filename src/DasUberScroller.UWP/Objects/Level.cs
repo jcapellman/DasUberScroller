@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 
-using Windows.Storage;
-
-using DasUberScroller.UWP.Common;
 using DasUberScroller.UWP.Containers;
 using DasUberScroller.UWP.JSONObjects;
 using DasUberScroller.UWP.Managers;
@@ -16,32 +12,19 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using Newtonsoft.Json;
-
 namespace DasUberScroller.UWP.Objects
 {
     public class Level : BaseObject
     {
         private readonly List<BaseObject> _levelObjects = new List<BaseObject>();
-
-        private static LevelJSON LoadLevel(string levelName)
-        {
-            var filePath = Path.Combine(Constants.PATH_LEVELS, $"{levelName}{Constants.FILE_EXTENSION_LEVEL}");
-
-            var appUri = new Uri(filePath);
-            var anjFile = StorageFile.GetFileFromApplicationUriAsync(appUri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-            var jsonText = FileIO.ReadTextAsync(anjFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-
-            return JsonConvert.DeserializeObject<JSONObjects.LevelJSON>(jsonText);            
-        }
-
+        
         private static List<LevelObject> GetLevelObjects() =>
             Assembly.GetAssembly(typeof(LevelObject)).DefinedTypes
                 .Where(a => !a.IsAbstract && a.BaseType == typeof(LevelObject)).Select(a => (LevelObject)Activator.CreateInstance(a)).ToList();
 
         public Level(string levelName, GameContentManager contentManager, WindowContainer windowContainer) : base(windowContainer)
         {
-            var levelJson = LoadLevel(levelName);
+            var levelJson = LevelJSON.LoadLevel(levelName);
 
             var levelObjects = GetLevelObjects();
 
