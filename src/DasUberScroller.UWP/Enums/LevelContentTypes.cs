@@ -2,8 +2,8 @@
 {
     public enum LevelContentTypes
     {
-        Floor,
-        Atmosphere,
-        AnimatedAtmosphere
+        AnimatedAtmosphere = 0,
+        Atmosphere = 1,
+        Floor = 2
     }
 }
