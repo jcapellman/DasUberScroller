@@ -1,7 +1,9 @@
-﻿namespace DasUberScroller.lib.PlatformAbstractions
+﻿using DasUberScroller.library.Common;
+
+namespace DasUberScroller.lib.PlatformAbstractions
 {
     public interface IFileSystem
     {
-        string ReadTextFromFile(string fileName);
+        ReturnSet<string> ReadTextFromFile(string fileName);
     }
 }
