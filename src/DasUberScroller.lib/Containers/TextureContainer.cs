@@ -1,4 +1,4 @@
-﻿namespace DasUberScroller.UWP.Containers
+﻿namespace DasUberScroller.lib.Containers
 {
     public class TextureContainer
     {

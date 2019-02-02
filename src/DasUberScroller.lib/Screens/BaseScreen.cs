@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using DasUberScroller.UWP.Containers;
-using DasUberScroller.UWP.Managers;
-using DasUberScroller.UWP.Objects;
+using DasUberScroller.lib.Containers;
+using DasUberScroller.lib.Managers;
+using DasUberScroller.lib.Objects;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace DasUberScroller.UWP.Screens
+namespace DasUberScroller.lib.Screens
 {
     public abstract class BaseScreen
     {
-        private List<BaseObject> _gameObjects = new List<BaseObject>();
+        private readonly List<BaseObject> _gameObjects = new List<BaseObject>();
 
         public event EventHandler<BaseScreen> ChangeScreen;
 

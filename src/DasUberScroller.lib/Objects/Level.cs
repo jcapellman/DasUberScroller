@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-using DasUberScroller.UWP.Containers;
-using DasUberScroller.UWP.JSONObjects;
-using DasUberScroller.UWP.Managers;
-using DasUberScroller.UWP.Objects.LevelObjects.Base;
+using DasUberScroller.lib.Containers;
+using DasUberScroller.lib.JSONObjects;
+using DasUberScroller.lib.Managers;
+using DasUberScroller.lib.Objects.LevelObjects.Base;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace DasUberScroller.UWP.Objects
+namespace DasUberScroller.lib.Objects
 {
     public class Level : BaseObject
     {

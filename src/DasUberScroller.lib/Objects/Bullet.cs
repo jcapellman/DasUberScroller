@@ -1,11 +1,11 @@
-﻿using DasUberScroller.UWP.Containers;
-using DasUberScroller.UWP.Managers;
+﻿using DasUberScroller.lib.Containers;
+using DasUberScroller.lib.Managers;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace DasUberScroller.UWP.Objects
+namespace DasUberScroller.lib.Objects
 {
     public class Bullet : BaseObject
     {

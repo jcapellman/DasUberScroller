@@ -1,12 +1,12 @@
-﻿using DasUberScroller.UWP.Containers;
-using DasUberScroller.UWP.Managers;
-using DasUberScroller.UWP.Screens;
+﻿using DasUberScroller.lib.Containers;
+using DasUberScroller.lib.Managers;
+using DasUberScroller.lib.Screens;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace DasUberScroller.UWP
+namespace DasUberScroller.lib
 {
     /// <summary>
     /// This is the main type for your game.

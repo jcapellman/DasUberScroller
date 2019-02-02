@@ -1,4 +1,4 @@
-﻿namespace DasUberScroller.UWP.Enums
+﻿namespace DasUberScroller.lib.Enums
 {
     public enum LevelContentTypes
     {

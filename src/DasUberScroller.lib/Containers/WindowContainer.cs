@@ -1,6 +1,6 @@
-﻿using DasUberScroller.UWP.Common;
+﻿using DasUberScroller.lib.Common;
 
-namespace DasUberScroller.UWP.Containers
+namespace DasUberScroller.lib.Containers
 {
     public class WindowContainer
     {

@@ -1,12 +1,12 @@
-﻿using DasUberScroller.UWP.Containers;
-using DasUberScroller.UWP.Enums;
-using DasUberScroller.UWP.Managers;
-using DasUberScroller.UWP.Objects.LevelObjects.Base;
+﻿using DasUberScroller.lib.Containers;
+using DasUberScroller.lib.Enums;
+using DasUberScroller.lib.Managers;
+using DasUberScroller.lib.Objects.LevelObjects.Base;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace DasUberScroller.UWP.Objects.LevelObjects
+namespace DasUberScroller.lib.Objects.LevelObjects
 {
     public class Atmosphere : LevelObject
     {

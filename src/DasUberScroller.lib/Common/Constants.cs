@@ -1,4 +1,4 @@
-﻿namespace DasUberScroller.UWP.Common
+﻿namespace DasUberScroller.lib.Common
 {
     public static class Constants
     {

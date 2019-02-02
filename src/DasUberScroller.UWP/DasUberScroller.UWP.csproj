@@ -106,30 +106,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Constants.cs" />
-    <Compile Include="Containers\TextureContainer.cs" />
-    <Compile Include="Containers\WindowContainer.cs" />
-    <Compile Include="Enums\LevelContentTypes.cs" />
-    <Compile Include="JSONObjects\LevelItemJSON.cs" />
-    <Compile Include="JSONObjects\LevelJSON.cs" />
-    <Compile Include="JSONObjects\LevelScreenContentJSON.cs" />
-    <Compile Include="Managers\GameContentManager.cs" />
-    <Compile Include="Managers\GameScreenManager.cs" />
-    <Compile Include="Objects\LevelObjects\AnimatedAtmosphere.cs" />
-    <Compile Include="Objects\LevelObjects\Atmosphere.cs" />
-    <Compile Include="Objects\BaseObject.cs" />
-    <Compile Include="Objects\Bullet.cs" />
-    <Compile Include="Objects\LevelObjects\Base\LevelObject.cs" />
-    <Compile Include="Objects\LevelObjects\Floor.cs" />
-    <Compile Include="Objects\FSBillboard.cs" />
-    <Compile Include="Objects\Level.cs" />
-    <Compile Include="Objects\Player.cs" />
+    <Compile Include="PlatformImplementations\UWPFileSystem.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="MainGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Screens\BaseScreen.cs" />
-    <Compile Include="Screens\LevelScreen.cs" />
-    <Compile Include="Screens\SplashScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -159,7 +138,12 @@
       <Version>12.0.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DasUberScroller.lib\DasUberScroller.lib.csproj">
+      <Project>{1dc23ad5-978a-4ef8-b785-f6a3c79ea456}</Project>
+      <Name>DasUberScroller.lib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

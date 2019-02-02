@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DasUberScroller.UWP.JSONObjects
+namespace DasUberScroller.lib.JSONObjects
 {
     public class LevelScreenContentJSON
     {

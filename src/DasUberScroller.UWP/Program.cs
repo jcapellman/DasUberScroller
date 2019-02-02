@@ -1,15 +1,16 @@
-﻿namespace DasUberScroller.UWP
+﻿using DasUberScroller.lib;
+using DasUberScroller.lib.DI;
+
+using DasUberScroller.UWP.PlatformImplementations;
+
+namespace DasUberScroller.UWP
 {
-    /// <summary>
-    /// The main class.
-    /// </summary>
     public static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         static void Main()
         {
+            DIContainer.Initialize(new UWPFileSystem());
+
             var factory = new MonoGame.Framework.GameFrameworkViewSource<MainGame>();
 
             Windows.ApplicationModel.Core.CoreApplication.Run(factory);

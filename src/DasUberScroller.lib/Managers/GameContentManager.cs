@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 
-using DasUberScroller.UWP.Containers;
+using DasUberScroller.lib.Containers;
 
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace DasUberScroller.UWP.Managers
+namespace DasUberScroller.lib.Managers
 {
     public class GameContentManager
     {
-        private Dictionary<string, Texture2D> _textures;
+        private readonly Dictionary<string, Texture2D> _textures;
 
         private readonly ContentManager _contentManager;
 

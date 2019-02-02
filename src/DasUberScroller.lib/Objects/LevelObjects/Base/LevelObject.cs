@@ -1,11 +1,11 @@
-﻿using DasUberScroller.UWP.Containers;
-using DasUberScroller.UWP.Enums;
-using DasUberScroller.UWP.Managers;
+﻿using DasUberScroller.lib.Containers;
+using DasUberScroller.lib.Enums;
+using DasUberScroller.lib.Managers;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace DasUberScroller.UWP.Objects.LevelObjects.Base
+namespace DasUberScroller.lib.Objects.LevelObjects.Base
 {
     public abstract class LevelObject : BaseObject
     {

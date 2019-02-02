@@ -1,6 +1,6 @@
-﻿using DasUberScroller.UWP.Enums;
+﻿using DasUberScroller.lib.Enums;
 
-namespace DasUberScroller.UWP.JSONObjects
+namespace DasUberScroller.lib.JSONObjects
 {
     public class LevelItemJSON
     {
