@@ -19,9 +19,14 @@ namespace DasUberScroller.lib.JSONObjects
         {
             var filePath = Path.Combine(Constants.PATH_LEVELS, $"{levelName}{Constants.FILE_EXTENSION_LEVEL}");
 
-            var jsonText = DIContainer.GetDIService<IFileSystem>().ReadTextFromFile(filePath);
-            
-            return JsonConvert.DeserializeObject<LevelJSON>(jsonText);
+            var jsonTextResult = DIContainer.GetDIService<IFileSystem>().ReadTextFromFile(filePath);
+
+            if (jsonTextResult.HasErrorOrNull)
+            {
+                throw jsonTextResult.Error;
+            }
+
+            return JsonConvert.DeserializeObject<LevelJSON>(jsonTextResult.Value);
         }
     }
 }

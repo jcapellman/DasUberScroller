@@ -13,6 +13,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Common\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ReturnSet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Containers\TextureContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Containers\WindowContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\DIContainer.cs" />
