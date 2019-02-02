@@ -1,6 +1,5 @@
-﻿using DasUberScroller.lib;
-using DasUberScroller.lib.DI;
-
+﻿using DasUberScroller.lib.DI;
+using DasUberScroller.library;
 using DasUberScroller.UWP.PlatformImplementations;
 
 namespace DasUberScroller.UWP
