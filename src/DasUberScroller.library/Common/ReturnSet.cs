@@ -15,9 +15,16 @@ namespace DasUberScroller.library.Common
             Value = objectValue;
         }
 
-        public ReturnSet(Exception exception)
+        public ReturnSet(Exception exception, bool logException = true)
         {
             Error = exception;
+
+            if (!logException)
+            {
+                return;
+            }
+
+            NLog.LogManager.GetCurrentClassLogger().Error(exception);
         }
     }
 }
