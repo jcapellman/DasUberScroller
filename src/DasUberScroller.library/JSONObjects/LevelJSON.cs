@@ -17,7 +17,7 @@ namespace DasUberScroller.lib.JSONObjects
 
         public static LevelJSON LoadLevel(string levelName)
         {
-            var filePath = Path.Combine(Constants.PATH_LEVELS, $"{levelName}{Constants.FILE_EXTENSION_LEVEL}");
+            var filePath = Path.Combine(DIContainer.GetDIService<IFileSystem>().LevelPath, $"{levelName}{Constants.FILE_EXTENSION_LEVEL}");
 
             var jsonTextResult = DIContainer.GetDIService<IFileSystem>().ReadTextFromFile(filePath);
 
